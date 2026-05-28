@@ -99,6 +99,7 @@
     </a>
     <nav class="main-nav">
       <a href="#services" data-lang-fr>Services</a><a href="#services" data-lang-en>Services</a>
+      <a href="#schema" data-lang-fr>Schéma</a><a href="#schema" data-lang-en>How it works</a>
       <a href="#subventions" data-lang-fr>Subventions</a><a href="#subventions" data-lang-en>Rebates</a>
       <a href="#calculateur" data-lang-fr>Calculateur</a><a href="#calculateur" data-lang-en>Calculator</a>
       <a href="#avis" data-lang-fr>Avis clients</a><a href="#avis" data-lang-en>Reviews</a>
@@ -208,6 +209,212 @@
           <span data-lang-en>🔒 Your information stays confidential</span>
         </p>
       </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============== BLUEPRINT ============== -->
+<section class="blueprint" id="schema">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="eyebrow eyebrow-light">
+        <span data-lang-fr>Anatomie d'une installation</span>
+        <span data-lang-en>Anatomy of an installation</span>
+      </span>
+      <h2>
+        <span data-lang-fr>Comment fonctionne votre thermopompe murale</span>
+        <span data-lang-en>How your wall-mounted heat pump works</span>
+      </h2>
+      <p>
+        <span data-lang-fr>Du compresseur extérieur à l'unité murale intérieure — suivez le tracé d'une installation type, dessiné au fil de votre défilement.</span>
+        <span data-lang-en>From the outdoor compressor to the indoor wall unit — follow the layout of a typical installation, drawn as you scroll.</span>
+      </p>
+    </div>
+
+    <div class="blueprint-layout">
+      <figure class="blueprint-figure">
+        <svg class="blueprint-svg" viewBox="0 0 1100 620" role="img" aria-labelledby="bp-title">
+          <title id="bp-title">Schéma d'installation d'une thermopompe murale Climatisation GX</title>
+
+          <!-- Static paper grid -->
+          <defs>
+            <pattern id="bp-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M40 0 H0 V40" fill="none" stroke="currentColor" stroke-width="1" class="bp-grid-line"/>
+            </pattern>
+            <pattern id="bp-hatch" width="9" height="9" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+              <line x1="0" y1="0" x2="0" y2="9" stroke="currentColor" stroke-width="1" class="bp-grid-line"/>
+            </pattern>
+          </defs>
+          <rect x="0" y="0" width="1100" height="620" fill="url(#bp-grid)"/>
+
+          <!-- Drawing frame -->
+          <rect class="bp-line" x="20" y="20" width="1060" height="580" rx="2" fill="none"/>
+          <rect class="bp-line" x="30" y="30" width="1040" height="560" fill="none"/>
+
+          <!-- Zone labels -->
+          <text class="bp-soft bp-label" x="62" y="74">EXTÉRIEUR</text>
+          <text class="bp-soft bp-label" x="660" y="74">INTÉRIEUR</text>
+
+          <!-- Wall section cut -->
+          <rect class="bp-soft" x="600" y="90" width="32" height="470" fill="url(#bp-hatch)" opacity="0"/>
+          <line class="bp-line" x1="600" y1="90" x2="600" y2="560"/>
+          <line class="bp-line" x1="632" y1="90" x2="632" y2="560"/>
+          <text class="bp-soft bp-label bp-label-sm" x="616" y="118" text-anchor="middle">MUR</text>
+
+          <!-- Ground (exterior) -->
+          <line class="bp-line" x1="70" y1="512" x2="560" y2="512"/>
+          <line class="bp-line" x1="92" y1="512" x2="80" y2="524"/>
+          <line class="bp-line" x1="132" y1="512" x2="120" y2="524"/>
+          <line class="bp-line" x1="172" y1="512" x2="160" y2="524"/>
+          <line class="bp-line" x1="212" y1="512" x2="200" y2="524"/>
+          <line class="bp-line" x1="252" y1="512" x2="240" y2="524"/>
+          <line class="bp-line" x1="292" y1="512" x2="280" y2="524"/>
+          <line class="bp-line" x1="332" y1="512" x2="320" y2="524"/>
+
+          <!-- Floor (interior) -->
+          <line class="bp-line" x1="632" y1="560" x2="1010" y2="560"/>
+
+          <!-- Outdoor condenser unit -->
+          <rect class="bp-line" x="110" y="350" width="250" height="150" rx="6" fill="none"/>
+          <line class="bp-line" x1="124" y1="372" x2="346" y2="372"/>
+          <!-- grille slats (top section) -->
+          <line class="bp-line bp-thin" x1="130" y1="386" x2="340" y2="386"/>
+          <line class="bp-line bp-thin" x1="130" y1="396" x2="340" y2="396"/>
+          <!-- fan housing -->
+          <circle class="bp-line" cx="200" cy="440" r="48" fill="none"/>
+          <!-- fan blades (spin) -->
+          <g transform="translate(200 440)">
+            <g class="bp-fan">
+              <circle class="bp-soft" cx="0" cy="0" r="8" fill="none"/>
+              <path class="bp-soft" d="M0,0 C12,-16 12,-34 0,-42 C-12,-34 -12,-16 0,0 Z" fill="none" transform="rotate(0)"/>
+              <path class="bp-soft" d="M0,0 C12,-16 12,-34 0,-42 C-12,-34 -12,-16 0,0 Z" fill="none" transform="rotate(120)"/>
+              <path class="bp-soft" d="M0,0 C12,-16 12,-34 0,-42 C-12,-34 -12,-16 0,0 Z" fill="none" transform="rotate(240)"/>
+            </g>
+          </g>
+          <!-- service valves -->
+          <rect class="bp-line" x="318" y="336" width="30" height="18" rx="2" fill="none"/>
+          <!-- support feet -->
+          <line class="bp-line" x1="150" y1="500" x2="150" y2="512"/>
+          <line class="bp-line" x1="320" y1="500" x2="320" y2="512"/>
+
+          <!-- Refrigerant line pair (outdoor -> wall -> indoor) -->
+          <path class="bp-line bp-pipe" d="M331 336 V294 H904 V228" fill="none"/>
+          <path class="bp-line bp-pipe" d="M345 336 V300 H890 V228" fill="none"/>
+          <!-- insulation ticks -->
+          <line class="bp-soft bp-thin" x1="430" y1="289" x2="430" y2="305"/>
+          <line class="bp-soft bp-thin" x1="510" y1="289" x2="510" y2="305"/>
+          <line class="bp-soft bp-thin" x1="700" y1="289" x2="700" y2="305"/>
+          <line class="bp-soft bp-thin" x1="800" y1="289" x2="800" y2="305"/>
+          <!-- condensate drain -->
+          <path class="bp-line bp-thin" d="M760 228 V552" fill="none"/>
+          <text class="bp-soft bp-label bp-label-sm" x="768" y="404">DRAIN</text>
+
+          <!-- Indoor wall unit (mini-split head) -->
+          <path class="bp-line" d="M728,150 H996 a16,16 0 0 1 16,16 V212 a16,16 0 0 1 -16,16 H728 a16,16 0 0 1 -16,-16 V166 a16,16 0 0 1 16,-16 Z" fill="none"/>
+          <line class="bp-line bp-thin" x1="716" y1="194" x2="1008" y2="194"/>
+          <!-- vane (open louver) -->
+          <line class="bp-line" x1="726" y1="226" x2="998" y2="214"/>
+          <!-- status LED -->
+          <circle class="bp-soft" cx="984" cy="176" r="3"/>
+
+          <!-- Airflow arrows (accent) -->
+          <path class="bp-line bp-air" d="M772 238 Q 800 280 844 296" fill="none"/>
+          <path class="bp-line bp-air" d="M844 296 l -16 -2 M844 296 l -3 -16" fill="none"/>
+          <path class="bp-line bp-air" d="M838 240 Q 880 292 932 308" fill="none"/>
+          <path class="bp-line bp-air" d="M932 308 l -17 -1 M932 308 l -2 -17" fill="none"/>
+          <path class="bp-line bp-air" d="M902 240 Q 952 300 1000 314" fill="none"/>
+          <path class="bp-line bp-air" d="M1000 314 l -17 -2 M1000 314 l -2 -17" fill="none"/>
+
+          <!-- Dimension: outdoor unit width -->
+          <line class="bp-line bp-dim" x1="110" y1="540" x2="360" y2="540"/>
+          <line class="bp-line bp-dim" x1="110" y1="532" x2="110" y2="548"/>
+          <line class="bp-line bp-dim" x1="360" y1="532" x2="360" y2="548"/>
+          <text class="bp-soft bp-label bp-label-sm" x="235" y="536" text-anchor="middle">≈ 0,9 m</text>
+
+          <!-- Dimension: indoor mounting height -->
+          <line class="bp-line bp-dim" x1="1044" y1="228" x2="1044" y2="560"/>
+          <line class="bp-line bp-dim" x1="1036" y1="228" x2="1052" y2="228"/>
+          <line class="bp-line bp-dim" x1="1036" y1="560" x2="1052" y2="560"/>
+          <text class="bp-soft bp-label bp-label-sm" x="1038" y="394" text-anchor="middle" transform="rotate(-90 1038 394)">≥ 2,1 m</text>
+
+          <!-- Callouts -->
+          <g class="bp-callout">
+            <line class="bp-line bp-thin" x1="150" y1="262" x2="196" y2="356"/>
+            <circle class="bp-line" cx="150" cy="248" r="15" fill="none"/>
+            <text class="bp-soft bp-label" x="150" y="254" text-anchor="middle">1</text>
+          </g>
+          <g class="bp-callout">
+            <line class="bp-line bp-thin" x1="520" y1="226" x2="520" y2="293"/>
+            <circle class="bp-line" cx="520" cy="212" r="15" fill="none"/>
+            <text class="bp-soft bp-label" x="520" y="218" text-anchor="middle">2</text>
+          </g>
+          <g class="bp-callout">
+            <line class="bp-line bp-thin" x1="760" y1="124" x2="800" y2="150"/>
+            <circle class="bp-line" cx="760" cy="110" r="15" fill="none"/>
+            <text class="bp-soft bp-label" x="760" y="116" text-anchor="middle">3</text>
+          </g>
+          <g class="bp-callout">
+            <line class="bp-line bp-thin" x1="978" y1="344" x2="946" y2="306"/>
+            <circle class="bp-line" cx="990" cy="356" r="15" fill="none"/>
+            <text class="bp-soft bp-label" x="990" y="362" text-anchor="middle">4</text>
+          </g>
+
+          <!-- Title block -->
+          <g class="bp-titleblock">
+            <rect class="bp-line" x="812" y="40" width="248" height="64" fill="none"/>
+            <line class="bp-line bp-thin" x1="812" y1="66" x2="1060" y2="66"/>
+            <line class="bp-line bp-thin" x1="812" y1="86" x2="1060" y2="86"/>
+            <line class="bp-line bp-thin" x1="936" y1="86" x2="936" y2="104"/>
+            <text class="bp-soft bp-label" x="824" y="59">CLIMATISATION GX</text>
+            <text class="bp-soft bp-label bp-label-sm" x="824" y="80">THERMOPOMPE MURALE</text>
+            <text class="bp-soft bp-label bp-label-sm" x="824" y="99">ÉCH. NTS</text>
+            <text class="bp-soft bp-label bp-label-sm" x="948" y="99">RÉF. GX-001</text>
+          </g>
+        </svg>
+      </figure>
+
+      <ol class="blueprint-legend fade-up">
+        <li class="blueprint-note">
+          <span class="bp-num">1</span>
+          <div>
+            <h3><span data-lang-fr>Unité extérieure</span><span data-lang-en>Outdoor unit</span></h3>
+            <p>
+              <span data-lang-fr>Le compresseur extrait ou rejette la chaleur. Posé sur une base au sol, à l'écart des fenêtres.</span>
+              <span data-lang-en>The compressor extracts or rejects heat. Set on a ground pad, away from windows.</span>
+            </p>
+          </div>
+        </li>
+        <li class="blueprint-note">
+          <span class="bp-num">2</span>
+          <div>
+            <h3><span data-lang-fr>Ligne de réfrigérant</span><span data-lang-en>Refrigerant line</span></h3>
+            <p>
+              <span data-lang-fr>Conduits isolés reliant les deux unités à travers le mur, avec drain de condensat.</span>
+              <span data-lang-en>Insulated piping linking both units through the wall, with a condensate drain.</span>
+            </p>
+          </div>
+        </li>
+        <li class="blueprint-note">
+          <span class="bp-num">3</span>
+          <div>
+            <h3><span data-lang-fr>Unité murale intérieure</span><span data-lang-en>Indoor wall unit</span></h3>
+            <p>
+              <span data-lang-fr>Diffuse l'air chauffé ou climatisé, silencieusement et sans conduits.</span>
+              <span data-lang-en>Distributes heated or cooled air, quietly and duct-free.</span>
+            </p>
+          </div>
+        </li>
+        <li class="blueprint-note">
+          <span class="bp-num">4</span>
+          <div>
+            <h3><span data-lang-fr>Flux d'air</span><span data-lang-en>Airflow</span></h3>
+            <p>
+              <span data-lang-fr>Air confortable réparti dans la pièce, orienté par les volets motorisés.</span>
+              <span data-lang-en>Comfortable air spread across the room, directed by motorized louvers.</span>
+            </p>
+          </div>
+        </li>
+      </ol>
     </div>
   </div>
 </section>

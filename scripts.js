@@ -242,5 +242,78 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
+// ========== HVAC blueprint (scroll-synced line drawing) ==========
+(function() {
+  const section = document.querySelector('.blueprint');
+  if (!section) return;
+  const svg = section.querySelector('.blueprint-svg');
+  const figure = section.querySelector('.blueprint-figure');
+  if (!svg || !figure) return;
+
+  const lines = Array.from(svg.querySelectorAll('.bp-line'));
+  const softs = Array.from(svg.querySelectorAll('.bp-soft'));
+  const fanGroup = svg.querySelector('.bp-fan');
+  const airflow = Array.from(svg.querySelectorAll('.bp-air'));
+
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Fallback: with no anime.js or reduced-motion preference, leave the
+  // blueprint in its natural fully-drawn state.
+  if (typeof anime === 'undefined' || reduceMotion) return;
+
+  // Hide the fade-in elements up front (stroked lines are hidden on timeline init).
+  softs.forEach(el => { el.style.opacity = '0'; });
+
+  // A paused timeline we scrub by hand — anime.js v3 has no scroll observer.
+  const tl = anime.timeline({ autoplay: false, easing: 'easeInOutSine' });
+  tl.add({
+    targets: lines,
+    strokeDashoffset: [anime.setDashoffset, 0],
+    duration: 700,
+    delay: anime.stagger(34)
+  }, 0);
+  tl.add({
+    targets: softs,
+    opacity: [0, 1],
+    duration: 360,
+    delay: anime.stagger(28)
+  }, 300);
+
+  // Map the figure's position in the viewport to timeline progress.
+  let ticking = false;
+  function seekToScroll() {
+    ticking = false;
+    const rect = figure.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    const startY = vh * 0.62; // start drawing only once the figure is well into view
+    const endY = vh * 0.12;   // finish as it approaches the top
+    let p = (startY - rect.top) / (startY - endY);
+    p = Math.min(1, Math.max(0, p));
+    tl.seek(tl.duration * p);
+  }
+  function onScroll() {
+    if (!ticking) { ticking = true; requestAnimationFrame(seekToScroll); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  seekToScroll();
+
+  // Living details, independent of scroll: the fan spins, the airflow breathes.
+  if (fanGroup) {
+    anime({ targets: fanGroup, rotate: '1turn', duration: 4200, loop: true, easing: 'linear' });
+  }
+  if (airflow.length) {
+    anime({
+      targets: airflow,
+      opacity: [1, 0.45],
+      duration: 1300,
+      direction: 'alternate',
+      loop: true,
+      easing: 'easeInOutSine',
+      delay: anime.stagger(180)
+    });
+  }
+})();
+
 // ========== Year ==========
 document.getElementById('year').textContent = new Date().getFullYear();

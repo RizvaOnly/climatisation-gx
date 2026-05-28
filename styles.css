@@ -1152,6 +1152,113 @@ section { padding: 100px 0; }
 .footer-bottom a { color: rgba(255,255,255,0.7); transition: color 0.2s; }
 .footer-bottom a:hover { color: var(--color-accent); }
 
+/* ---------- BLUEPRINT ---------- */
+.blueprint {
+  position: relative;
+  background: #071528;
+  color: #BFE0F2;
+  overflow: hidden;
+  border-top: 1px solid rgba(120,180,220,0.12);
+  border-bottom: 1px solid rgba(120,180,220,0.12);
+}
+.blueprint::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(110% 80% at 50% -10%, rgba(74,150,210,0.16), transparent 60%);
+  pointer-events: none;
+}
+.blueprint .container { position: relative; }
+.blueprint h2 { color: #F2F9FF; }
+.eyebrow-light { color: #5FA8D6; }
+.blueprint .eyebrow::before { content: '— '; }
+.blueprint .section-header p { color: #8FB2CB; }
+
+.blueprint-layout {
+  display: grid;
+  grid-template-columns: 1.65fr 1fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.blueprint-figure {
+  margin: 0;
+  padding: 10px;
+  border: 1px solid rgba(120,180,220,0.22);
+  border-radius: 6px;
+  background: rgba(8,24,45,0.55);
+}
+.blueprint-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* SVG element styling */
+.blueprint-svg .bp-grid-line { stroke: rgba(120,170,210,0.10); }
+.blueprint-svg .bp-line {
+  fill: none;
+  stroke: #79B4DA;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.blueprint-svg .bp-thin { stroke: #5C90B6; stroke-width: 1.2; fill: none; }
+.blueprint-svg .bp-dim  { stroke: #4C7894; stroke-width: 1.2; }
+.blueprint-svg .bp-pipe { stroke: #BFE6FF; stroke-width: 2.6; }
+.blueprint-svg .bp-air  { stroke: var(--color-accent); stroke-width: 2.6; }
+.blueprint-svg .bp-blade { fill: none; stroke: #9CCBE8; stroke-width: 1.6; }
+.blueprint-svg .bp-led  { fill: var(--color-accent); stroke: none; }
+.blueprint-svg .bp-label {
+  fill: #9FC6E0;
+  stroke: none;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+}
+.blueprint-svg .bp-label-sm { font-size: 12.5px; fill: #7BA5C2; }
+.blueprint-svg .bp-fan { transform-box: fill-box; transform-origin: center; }
+
+.blueprint-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+.blueprint-note {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+.blueprint-note .bp-num {
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--color-accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  flex-shrink: 0;
+}
+.blueprint-note h3 {
+  color: #EAF4FC;
+  font-size: 1.18rem;
+  margin-bottom: 4px;
+}
+.blueprint-note p {
+  color: #8FB2CB;
+  font-size: 0.96rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
 /* ---------- ANIMATIONS ---------- */
 .fade-up {
   opacity: 0;
@@ -1174,6 +1281,8 @@ section { padding: 100px 0; }
   .subsidy-spotlight .container { grid-template-columns: 1fr; gap: 40px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .calculator .container { grid-template-columns: 1fr; gap: 40px; }
+  .blueprint-layout { grid-template-columns: 1fr; gap: 40px; }
+  .blueprint-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
   .reviews-grid { grid-template-columns: 1fr; }
   .about .container { grid-template-columns: 1fr; gap: 60px; }
   .about-image-stack { max-width: 480px; margin: 0 auto; height: 420px; }
@@ -1192,6 +1301,7 @@ section { padding: 100px 0; }
   .hero-ctas .btn { width: 100%; }
   .quote-form > div { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
+  .blueprint-legend { grid-template-columns: 1fr; }
   .subsidy-card { grid-template-columns: 60px 1fr; }
   .subsidy-card .subsidy-amount { grid-column: 1 / -1; text-align: right; }
   .calc-options { grid-template-columns: 1fr; }
