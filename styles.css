@@ -28,7 +28,7 @@ body {
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   font-size: 16px;
-  overflow-x: hidden;
+  overflow-x: clip; /* clip, not hidden: avoids making <body> a scroll container (would break position: sticky) */
 }
 
 img { max-width: 100%; display: block; }
@@ -1157,7 +1157,6 @@ section { padding: 100px 0; }
   position: relative;
   background: #071528;
   color: #BFE0F2;
-  overflow: hidden;
   border-top: 1px solid rgba(120,180,220,0.12);
   border-bottom: 1px solid rgba(120,180,220,0.12);
 }
@@ -1174,11 +1173,22 @@ section { padding: 100px 0; }
 .blueprint .eyebrow::before { content: '— '; }
 .blueprint .section-header p { color: #8FB2CB; }
 
+/* Pin the figure + legend together while scrolling through a tall track,
+   so the schematic draws while both are held in view. */
+.blueprint-track { height: 200vh; }
+.blueprint-sticky {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
 .blueprint-layout {
   display: grid;
   grid-template-columns: 1.65fr 1fr;
   gap: 48px;
   align-items: center;
+  width: 100%;
 }
 
 .blueprint-figure {
@@ -1281,8 +1291,14 @@ section { padding: 100px 0; }
   .subsidy-spotlight .container { grid-template-columns: 1fr; gap: 40px; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .calculator .container { grid-template-columns: 1fr; gap: 40px; }
-  .blueprint-layout { grid-template-columns: 1fr; gap: 40px; }
-  .blueprint-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 28px 36px; }
+  /* Pin figure + legend together; svh keeps the pin stable as the toolbar hides. */
+  .blueprint-track { height: 200svh; }
+  .blueprint-sticky { min-height: 100svh; }
+  .blueprint-layout { grid-template-columns: 1fr; gap: 24px; }
+  .blueprint-legend { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 24px; }
+  .blueprint-note { grid-template-columns: 30px 1fr; gap: 12px; }
+  .blueprint-note h3 { font-size: 1.02rem; }
+  .blueprint-note p { font-size: 0.86rem; line-height: 1.45; }
   .reviews-grid { grid-template-columns: 1fr; }
   .about .container { grid-template-columns: 1fr; gap: 60px; }
   .about-image-stack { max-width: 480px; margin: 0 auto; height: 420px; }
@@ -1301,7 +1317,6 @@ section { padding: 100px 0; }
   .hero-ctas .btn { width: 100%; }
   .quote-form > div { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
-  .blueprint-legend { grid-template-columns: 1fr; }
   .subsidy-card { grid-template-columns: 60px 1fr; }
   .subsidy-card .subsidy-amount { grid-column: 1 / -1; text-align: right; }
   .calc-options { grid-template-columns: 1fr; }

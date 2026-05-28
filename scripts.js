@@ -250,6 +250,7 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   const figure = section.querySelector('.blueprint-figure');
   if (!svg || !figure) return;
 
+  const track = section.querySelector('.blueprint-track');
   const lines = Array.from(svg.querySelectorAll('.bp-line'));
   const softs = Array.from(svg.querySelectorAll('.bp-soft'));
   const fanGroup = svg.querySelector('.bp-fan');
@@ -283,11 +284,14 @@ document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
   let ticking = false;
   function seekToScroll() {
     ticking = false;
-    const rect = figure.getBoundingClientRect();
     const vh = window.innerHeight || document.documentElement.clientHeight;
-    const startY = vh * 0.62; // start drawing only once the figure is well into view
-    const endY = vh * 0.12;   // finish as it approaches the top
-    let p = (startY - rect.top) / (startY - endY);
+    // Progress = how far we've scrolled through the pinned track.
+    let p = 0;
+    if (track) {
+      const rect = track.getBoundingClientRect();
+      const distance = track.offsetHeight - vh;
+      p = distance > 0 ? -rect.top / distance : 0;
+    }
     p = Math.min(1, Math.max(0, p));
     tl.seek(tl.duration * p);
   }
