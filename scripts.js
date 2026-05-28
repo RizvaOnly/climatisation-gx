@@ -32,10 +32,18 @@ function localStorage_safe_get(k) { try { return localStorage.getItem(k); } catc
 })();
 
 // ========== Mobile nav ==========
+function closeMobileNav() {
+  const nav = document.querySelector('.main-nav');
+  const btn = document.querySelector('.mobile-menu-btn');
+  nav.style.display = '';
+  btn.classList.remove('open');
+}
+
 function toggleMobileNav() {
   const nav = document.querySelector('.main-nav');
-  if (nav.style.display === 'flex') {
-    nav.style.display = '';
+  const btn = document.querySelector('.mobile-menu-btn');
+  if (btn.classList.contains('open')) {
+    closeMobileNav();
   } else {
     nav.style.display = 'flex';
     nav.style.position = 'absolute';
@@ -48,8 +56,17 @@ function toggleMobileNav() {
     nav.style.gap = '16px';
     nav.style.borderBottom = '1px solid var(--color-border-soft)';
     nav.style.boxShadow = '0 8px 24px -8px rgba(0,0,0,0.1)';
+    btn.classList.add('open');
   }
 }
+
+document.querySelectorAll('.main-nav a').forEach(link => {
+  link.addEventListener('click', closeMobileNav);
+});
+
+window.addEventListener('scroll', () => {
+  document.querySelector('.site-header').classList.toggle('scrolled', window.scrollY > 10);
+}, { passive: true });
 
 // ========== FAQ accordion ==========
 function toggleFaq(btn) {
