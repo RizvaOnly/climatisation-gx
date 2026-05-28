@@ -1,4 +1,16 @@
-﻿// ========== Language switching ==========
+﻿// ========== Loader ==========
+(function() {
+  const loader = document.getElementById('loader');
+  if (!loader) return;
+  document.body.style.overflow = 'hidden';
+  setTimeout(() => {
+    loader.classList.add('fade-out');
+    document.body.style.overflow = '';
+    setTimeout(() => loader.remove(), 500);
+  }, 1500);
+})();
+
+// ========== Language switching ==========
 function setLang(lang) {
   document.documentElement.lang = lang;
   document.getElementById('lang-fr').classList.toggle('active', lang === 'fr');
