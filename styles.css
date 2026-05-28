@@ -19,7 +19,7 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
@@ -355,6 +355,8 @@ html[lang="fr"] .quote-card::before { content: 'GRATUIT · SANS ENGAGEMENT'; }
 }
 .quote-form { display: flex; flex-direction: column; gap: 12px; }
 .quote-form input, .quote-form select {
+  width: 100%;
+  min-width: 0;
   font-family: inherit;
   font-size: 0.95rem;
   padding: 13px 16px;
@@ -1128,6 +1130,7 @@ section { padding: 100px 0; }
   .hero-trust-divider { display: none; }
   .hero-ctas { flex-direction: column; }
   .hero-ctas .btn { width: 100%; }
+  .quote-form > div { grid-template-columns: 1fr; }
   .services-grid { grid-template-columns: 1fr; }
   .subsidy-card { grid-template-columns: 60px 1fr; }
   .subsidy-card .subsidy-amount { grid-column: 1 / -1; text-align: right; }
