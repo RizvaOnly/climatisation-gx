@@ -115,10 +115,22 @@ function updateNavTheme() {
   siteHeader.classList.toggle('nav-dark', theme === 'dark');
 }
 
+// ========== Hero parallax: drift the background slower than the page ==========
+const heroBg = document.querySelector('.hero-bg');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+function updateHeroParallax() {
+  if (!heroBg || prefersReducedMotion) return;
+  const y = window.scrollY;
+  if (y < window.innerHeight) {
+    heroBg.style.transform = `translateY(${y * 0.22}px) scale(1.06)`;
+  }
+}
+
 window.addEventListener('scroll', () => {
   siteHeader.classList.toggle('scrolled', window.scrollY > 10);
   updateActiveNav();
   updateNavTheme();
+  updateHeroParallax();
 }, { passive: true });
 window.addEventListener('resize', updateNavTheme, { passive: true });
 updateActiveNav();
@@ -193,7 +205,9 @@ function handleQuote(e) {
   const gridConfigs = [
     { grid: '.services-grid', cards: '.service-card' },
     { grid: '.subsidy-list', cards: '.subsidy-card' },
-    { grid: '.reviews-grid', cards: '.review-card' }
+    { grid: '.reviews-grid', cards: '.review-card' },
+    { grid: '.about-features', cards: '.about-feature' },
+    { grid: '.faq-list', cards: '.faq-item' }
   ];
 
   gridConfigs.forEach(({ grid, cards }) => {

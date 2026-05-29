@@ -14,7 +14,16 @@
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'DM Sans', system-ui, sans-serif;
   --container: 1240px;
+  /* Radius scale */
+  --radius-sm: 10px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
   --radius: 4px;
+  /* Elevation scale */
+  --shadow-sm: 0 2px 8px -4px rgba(11, 31, 58, 0.10);
+  --shadow-card: 0 4px 22px -14px rgba(11, 31, 58, 0.18);
+  --shadow-card-hover: 0 22px 46px -22px rgba(11, 31, 58, 0.24);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -311,6 +320,25 @@ a { color: inherit; text-decoration: none; }
   padding: 80px 0 100px;
   overflow: hidden;
 }
+/* Soft warm glow drifting behind the content for depth */
+.hero::before {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  top: -140px; right: -60px;
+  width: 460px; height: 460px;
+  background: radial-gradient(circle, rgba(217, 122, 44, 0.18) 0%, rgba(217, 122, 44, 0) 70%);
+  filter: blur(8px);
+  pointer-events: none;
+  animation: heroGlow 11s ease-in-out infinite;
+}
+@keyframes heroGlow {
+  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.45; }
+  50%      { transform: translate(-36px, 34px) scale(1.12); opacity: 0.65; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero::before { animation: none; }
+}
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -318,6 +346,8 @@ a { color: inherit; text-decoration: none; }
   background-size: cover;
   background-position: center 55%;
   filter: brightness(0.55) contrast(1.05) saturate(0.85);
+  transform: scale(1.06);
+  will-change: transform;
   z-index: 0;
 }
 .hero-bg::after {
@@ -417,9 +447,12 @@ a { color: inherit; text-decoration: none; }
 /* Hero quote card */
 .quote-card {
   background: white;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 32px;
-  box-shadow: 0 24px 60px -20px rgba(0,0,0,0.45);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  box-shadow:
+    0 24px 60px -20px rgba(0, 0, 0, 0.5),
+    0 0 70px -16px rgba(217, 122, 44, 0.28);
   position: relative;
 }
 .quote-card::before {
@@ -527,7 +560,9 @@ section { padding: 100px 0; }
 }
 .section-header.left { text-align: left; margin-left: 0; }
 .eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.16em;
@@ -536,7 +571,12 @@ section { padding: 100px 0; }
   margin-bottom: 18px;
 }
 .eyebrow::before {
-  content: '— ';
+  content: '';
+  width: 28px;
+  height: 2px;
+  border-radius: 2px;
+  background: currentColor;
+  opacity: 0.85;
 }
 .section-header p {
   font-size: 1.05rem;
@@ -584,18 +624,19 @@ section { padding: 100px 0; }
 }
 .subsidy-card {
   background: white;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 24px;
   display: grid;
   grid-template-columns: 80px 1fr auto;
   gap: 22px;
   align-items: center;
   border: 1px solid var(--color-border-soft);
-  transition: all 0.25s;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
 }
 .subsidy-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 12px 32px -16px rgba(11, 31, 58, 0.18);
+  box-shadow: var(--shadow-card-hover);
   border-color: var(--color-border);
 }
 .subsidy-card img {
@@ -631,16 +672,17 @@ section { padding: 100px 0; }
 }
 .service-card {
   background: var(--color-surface);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--color-border-soft);
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.3s ease;
   display: flex;
   flex-direction: column;
 }
 .service-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 40px -20px rgba(11, 31, 58, 0.2);
+  box-shadow: var(--shadow-card-hover);
   border-color: var(--color-accent);
 }
 .service-card .img-wrap {
@@ -820,12 +862,18 @@ section { padding: 100px 0; }
 }
 .review-card {
   background: white;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   padding: 30px;
   border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-card);
   display: flex;
   flex-direction: column;
   gap: 16px;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-card-hover);
 }
 .review-stars { display: flex; gap: 2px; }
 .review-stars svg { width: 18px; height: 18px; color: #F5B400; fill: #F5B400; }
@@ -1205,7 +1253,6 @@ section { padding: 100px 0; }
 .blueprint .container { position: relative; }
 .blueprint h2 { color: #F2F9FF; }
 .eyebrow-light { color: #5FA8D6; }
-.blueprint .eyebrow::before { content: '— '; }
 .blueprint .section-header p { color: #8FB2CB; }
 
 /* Pin the figure + legend together while scrolling through a tall track,
