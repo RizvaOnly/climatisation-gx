@@ -203,6 +203,18 @@ a { color: inherit; text-decoration: none; }
 .site-header.nav-dark .phone-link { color: #fff; }
 .site-header.nav-dark .burger-line { background: #fff; }
 
+/* Mobile menu open: header goes solid cream to match the dropdown below it */
+.site-header.menu-open,
+.site-header.nav-dark.menu-open {
+  background: var(--color-bg);
+  backdrop-filter: none;
+  border-bottom-color: var(--color-border-soft);
+}
+.site-header.menu-open .burger-line,
+.site-header.nav-dark.menu-open .burger-line { background: var(--color-ink); }
+.site-header.menu-open .phone-link,
+.site-header.nav-dark.menu-open .phone-link { color: var(--color-ink); }
+
 .btn {
   display: inline-flex;
   align-items: center;
