@@ -102,9 +102,6 @@ function updateActiveNav() {
 // ========== Adaptive navbar theme: match the section behind the header ==========
 const siteHeader = document.querySelector('.site-header');
 const themeSections = Array.from(document.querySelectorAll('section, .site-footer'));
-const themeColorMeta = document.querySelector('meta[name="theme-color"]');
-// Solid equivalents of the navbar backgrounds, for the mobile browser UI tint.
-const THEME_COLOR = { dark: '#0B1F3A', light: '#FAF6EE' };
 
 function updateNavTheme() {
   // Probe just below the header's bottom edge — the section currently behind it.
@@ -118,8 +115,6 @@ function updateNavTheme() {
     }
   }
   siteHeader.classList.toggle('nav-dark', theme === 'dark');
-  // Keep the mobile status/address bar in sync with the navbar.
-  if (themeColorMeta) themeColorMeta.setAttribute('content', THEME_COLOR[theme]);
 }
 
 // ========== Hero parallax: drift the background slower than the page ==========
