@@ -76,9 +76,53 @@ document.querySelectorAll('.main-nav a').forEach(link => {
   link.addEventListener('click', closeMobileNav);
 });
 
+// ========== Scrollspy: highlight the nav link for the section in view ==========
+const navLinks = Array.from(document.querySelectorAll('.main-nav a'));
+const navSections = navLinks
+  .map(link => document.querySelector(link.getAttribute('href')))
+  .filter(Boolean);
+
+function updateActiveNav() {
+  const marker = window.innerHeight * 0.3;
+  let currentId = '';
+  for (const section of navSections) {
+    if (section.getBoundingClientRect().top <= marker) currentId = section.id;
+  }
+  // Near the bottom, force-select the last section.
+  if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4 && navSections.length) {
+    currentId = navSections[navSections.length - 1].id;
+  }
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+  });
+}
+
+// ========== Adaptive navbar theme: match the section behind the header ==========
+const siteHeader = document.querySelector('.site-header');
+const themeSections = Array.from(document.querySelectorAll('section, .site-footer'));
+
+function updateNavTheme() {
+  // Probe just below the header's bottom edge — the section currently behind it.
+  const probe = siteHeader.getBoundingClientRect().bottom + 1;
+  let theme = 'light';
+  for (const sec of themeSections) {
+    const r = sec.getBoundingClientRect();
+    if (r.top <= probe && r.bottom > probe) {
+      theme = sec.dataset.theme || 'light';
+      break;
+    }
+  }
+  siteHeader.classList.toggle('nav-dark', theme === 'dark');
+}
+
 window.addEventListener('scroll', () => {
-  document.querySelector('.site-header').classList.toggle('scrolled', window.scrollY > 10);
+  siteHeader.classList.toggle('scrolled', window.scrollY > 10);
+  updateActiveNav();
+  updateNavTheme();
 }, { passive: true });
+window.addEventListener('resize', updateNavTheme, { passive: true });
+updateActiveNav();
+updateNavTheme();
 
 // ========== FAQ accordion ==========
 function toggleFaq(btn) {
